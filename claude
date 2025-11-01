@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard Broker - Trade Show Edition</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+        const EMBEDDED_DATA = {"brokers": [{"broker": "DO YOU SPAIN", "bookings_2024": 8546, "bookings_2025": 6110, "bookings_change": -2436, "bookings_change_pct": -0.2850456353849754, "confirmed_2024": 4670, "confirmed_2025": 3258, "cancelled_2024": 3876, "cancelled_2025": 2852, "noshow_2024": 1, "noshow_2025": 479, "cancellation_rate_2024": 0.4535455183711678, "cancellation_rate_2025": 0.4667757774140753, "noshow_rate_2024": 0.00011701380762930026, "noshow_rate_2025": 0.07839607201309329, "revenue_2024": 1000961.46, "revenue_2025": 652053.11, "revenue_change": -348908.35, "revenue_change_pct": -0.34857321080074355, "net_revenue_2024": 506287.57, "net_revenue_2025": 336474.12, "lost_cancelled_2024": 494673.89, "lost_cancelled_2025": 315578.99, "lost_noshow_2024": 212.5, "lost_noshow_2025": 52433.34, "revenue_realization_2024": 0.5058012623183314, "revenue_realization_2025": 0.5160225675482171}, {"broker": "Discover Car Hire", "bookings_2024": 6650, "bookings_2025": 5083, "bookings_change": -1567, "bookings_change_pct": -0.23563909774436087, "confirmed_2024": 3814, "confirmed_2025": 3179, "cancelled_2024": 2836, "cancelled_2025": 1904, "noshow_2024": 0, "noshow_2025": 133, "cancellation_rate_2024": 0.4264661654135338, "cancellation_rate_2025": 0.3745819397993311, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.026165650206570922, "revenue_2024": 970414.17, "revenue_2025": 692765.37, "revenue_change": -277648.80000000005, "revenue_change_pct": -0.28611371163304433, "net_revenue_2024": 482254.37, "net_revenue_2025": 422241.18, "lost_cancelled_2024": 488159.8, "lost_cancelled_2025": 270524.19, "lost_noshow_2024": 0.0, "lost_noshow_2025": 15833.93, "revenue_realization_2024": 0.49695726310344374, "revenue_realization_2025": 0.6095009916560927}, {"broker": "Vip Cars", "bookings_2024": 3947, "bookings_2025": 2696, "bookings_change": -1251, "bookings_change_pct": -0.316949581960983, "confirmed_2024": 1996, "confirmed_2025": 1458, "cancelled_2024": 1951, "cancelled_2025": 1238, "noshow_2024": 0, "noshow_2025": 166, "cancellation_rate_2024": 0.494299467950342, "cancellation_rate_2025": 0.45919881305637983, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.06157270029673591, "revenue_2024": 838609.15, "revenue_2025": 398483.18, "revenue_change": -440125.97000000003, "revenue_change_pct": -0.5248284853557823, "net_revenue_2024": 397790.9, "net_revenue_2025": 217131.54, "lost_cancelled_2024": 440818.25, "lost_cancelled_2025": 181351.63999999998, "lost_noshow_2024": 0.0, "lost_noshow_2025": 23335.79, "revenue_realization_2024": 0.47434600492971013, "revenue_realization_2025": 0.5448951195380443}, {"broker": "Booking Group", "bookings_2024": 1582, "bookings_2025": 1910, "bookings_change": 328, "bookings_change_pct": 0.20733249051833114, "confirmed_2024": 830, "confirmed_2025": 1024, "cancelled_2024": 752, "cancelled_2025": 886, "noshow_2024": 0, "noshow_2025": 143, "cancellation_rate_2024": 0.47534766118836913, "cancellation_rate_2025": 0.4638743455497382, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.07486910994764398, "revenue_2024": 334507.34, "revenue_2025": 315705.5, "revenue_change": -18801.840000000026, "revenue_change_pct": -0.05620755586409565, "net_revenue_2024": 158601.7, "net_revenue_2025": 163457.13, "lost_cancelled_2024": 175905.64, "lost_cancelled_2025": 152248.37, "lost_noshow_2024": 0.0, "lost_noshow_2025": 16935.13, "revenue_realization_2024": 0.4741351863908278, "revenue_realization_2025": 0.5177519238657546}, {"broker": "AURUM Cars", "bookings_2024": 1037, "bookings_2025": 1467, "bookings_change": 430, "bookings_change_pct": 0.4146576663452266, "confirmed_2024": 624, "confirmed_2025": 892, "cancelled_2024": 413, "cancelled_2025": 575, "noshow_2024": 0, "noshow_2025": 55, "cancellation_rate_2024": 0.3982642237222758, "cancellation_rate_2025": 0.39195637355146556, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.03749147920927062, "revenue_2024": 122596.89, "revenue_2025": 158982.94, "revenue_change": 36386.05, "revenue_change_pct": 0.29679423352419465, "net_revenue_2024": 71292.37, "net_revenue_2025": 93402.88, "lost_cancelled_2024": 51304.52, "lost_cancelled_2025": 65580.06, "lost_noshow_2024": 0.0, "lost_noshow_2025": 6199.61, "revenue_realization_2024": 0.5815185850146769, "revenue_realization_2025": 0.5875025332906789}, {"broker": "BSP AUTO", "bookings_2024": 1207, "bookings_2025": 1142, "bookings_change": -65, "bookings_change_pct": -0.05385252692626341, "confirmed_2024": 642, "confirmed_2025": 645, "cancelled_2024": 565, "cancelled_2025": 497, "noshow_2024": 0, "noshow_2025": 54, "cancellation_rate_2024": 0.46810273405136704, "cancellation_rate_2025": 0.4352014010507881, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.047285464098073555, "revenue_2024": 155983.35, "revenue_2025": 136033.95, "revenue_change": -19949.399999999994, "revenue_change_pct": -0.1278944195005428, "net_revenue_2024": 79495.22, "net_revenue_2025": 73958.43, "lost_cancelled_2024": 76488.13, "lost_cancelled_2025": 62075.52, "lost_noshow_2024": 0.0, "lost_noshow_2025": 9205.699999999999, "revenue_realization_2024": 0.5096391377669476, "revenue_realization_2025": 0.5436762661085706}, {"broker": "SUNNYCARS", "bookings_2024": 1013, "bookings_2025": 660, "bookings_change": -353, "bookings_change_pct": -0.3484698914116485, "confirmed_2024": 766, "confirmed_2025": 539, "cancelled_2024": 247, "cancelled_2025": 121, "noshow_2024": 0, "noshow_2025": 3, "cancellation_rate_2024": 0.24383020730503455, "cancellation_rate_2025": 0.18333333333333332, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.004545454545454545, "revenue_2024": 374270.44, "revenue_2025": 241107.92, "revenue_change": -133162.52, "revenue_change_pct": -0.35579224477359206, "net_revenue_2024": 268711.67, "net_revenue_2025": 192595.17, "lost_cancelled_2024": 105558.77, "lost_cancelled_2025": 48512.75, "lost_noshow_2024": 0.0, "lost_noshow_2025": 845.85, "revenue_realization_2024": 0.7179612421435152, "revenue_realization_2025": 0.7987923830955035}, {"broker": "SITO WEB ACARENT", "bookings_2024": 684, "bookings_2025": 303, "bookings_change": -381, "bookings_change_pct": -0.5570175438596492, "confirmed_2024": 348, "confirmed_2025": 99, "cancelled_2024": 336, "cancelled_2025": 204, "noshow_2024": 0, "noshow_2025": 10, "cancellation_rate_2024": 0.49122807017543857, "cancellation_rate_2025": 0.6732673267326733, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.033003300330033, "revenue_2024": 102770.08, "revenue_2025": 44997.14, "revenue_change": -57772.94, "revenue_change_pct": -0.5621571959465246, "net_revenue_2024": 61715.72, "net_revenue_2025": 19168.96, "lost_cancelled_2024": 41054.36, "lost_cancelled_2025": 25828.18, "lost_noshow_2024": 0.0, "lost_noshow_2025": 1168.14, "revenue_realization_2024": 0.600522253169405, "revenue_realization_2025": 0.4260039638074775}, {"broker": "WISECARS", "bookings_2024": 94, "bookings_2025": 259, "bookings_change": 165, "bookings_change_pct": 1.7553191489361701, "confirmed_2024": 46, "confirmed_2025": 155, "cancelled_2024": 48, "cancelled_2025": 104, "noshow_2024": 0, "noshow_2025": 16, "cancellation_rate_2024": 0.5106382978723404, "cancellation_rate_2025": 0.4015444015444015, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.06177606177606178, "revenue_2024": 17132.94, "revenue_2025": 41451.22, "revenue_change": 24318.280000000002, "revenue_change_pct": 1.4193874489725644, "net_revenue_2024": 8458.15, "net_revenue_2025": 23571.29, "lost_cancelled_2024": 8674.79, "lost_cancelled_2025": 17879.93, "lost_noshow_2024": 0.0, "lost_noshow_2025": 2550.75, "revenue_realization_2024": 0.49367767586882344, "revenue_realization_2025": 0.5686512966325237}, {"broker": "Enjoy Travel", "bookings_2024": 1347, "bookings_2025": 153, "bookings_change": -1194, "bookings_change_pct": -0.8864142538975501, "confirmed_2024": 771, "confirmed_2025": 57, "cancelled_2024": 576, "cancelled_2025": 96, "noshow_2024": 0, "noshow_2025": 8, "cancellation_rate_2024": 0.42761692650334077, "cancellation_rate_2025": 0.6274509803921569, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.05228758169934641, "revenue_2024": 220748.24, "revenue_2025": 18968.41, "revenue_change": -201779.83, "revenue_change_pct": -0.9140722027953654, "net_revenue_2024": 122745.91, "net_revenue_2025": 5179.25, "lost_cancelled_2024": 98002.33, "lost_cancelled_2025": 13789.16, "lost_noshow_2024": 0.0, "lost_noshow_2025": 1061.76, "revenue_realization_2024": 0.5560447956459359, "revenue_realization_2025": 0.2730460802987704}, {"broker": "Flexibleautos", "bookings_2024": 130, "bookings_2025": 122, "bookings_change": -8, "bookings_change_pct": -0.06153846153846154, "confirmed_2024": 79, "confirmed_2025": 80, "cancelled_2024": 51, "cancelled_2025": 42, "noshow_2024": 0, "noshow_2025": 5, "cancellation_rate_2024": 0.3923076923076923, "cancellation_rate_2025": 0.3442622950819672, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.040983606557377046, "revenue_2024": 18753.07, "revenue_2025": 16864.21, "revenue_change": -1888.8600000000006, "revenue_change_pct": -0.1007227083352219, "net_revenue_2024": 10599.73, "net_revenue_2025": 9726.99, "lost_cancelled_2024": 8153.34, "lost_cancelled_2025": 7137.22, "lost_noshow_2024": 0.0, "lost_noshow_2025": 826.4300000000001, "revenue_realization_2024": 0.5652263869329128, "revenue_realization_2025": 0.5767830215586737}, {"broker": "Rentcars_BV", "bookings_2024": 192, "bookings_2025": 84, "bookings_change": -108, "bookings_change_pct": -0.5625, "confirmed_2024": 111, "confirmed_2025": 50, "cancelled_2024": 81, "cancelled_2025": 34, "noshow_2024": 0, "noshow_2025": 10, "cancellation_rate_2024": 0.421875, "cancellation_rate_2025": 0.40476190476190477, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.11904761904761904, "revenue_2024": 6808.56, "revenue_2025": 3533.13, "revenue_change": -3275.4300000000003, "revenue_change_pct": -0.4810752934541225, "net_revenue_2024": 4240.4400000000005, "net_revenue_2025": 2189.17, "lost_cancelled_2024": 2568.12, "lost_cancelled_2025": 1343.96, "lost_noshow_2024": 0.0, "lost_noshow_2025": 287.0, "revenue_realization_2024": 0.6228101096267052, "revenue_realization_2025": 0.6196120720154651}, {"broker": "Qeeq.com", "bookings_2024": 162, "bookings_2025": 43, "bookings_change": -119, "bookings_change_pct": -0.7345679012345678, "confirmed_2024": 56, "confirmed_2025": 11, "cancelled_2024": 106, "cancelled_2025": 32, "noshow_2024": 0, "noshow_2025": 0, "cancellation_rate_2024": 0.654320987654321, "cancellation_rate_2025": 0.7441860465116279, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.0, "revenue_2024": 29432.02, "revenue_2025": 10130.97, "revenue_change": -19301.050000000003, "revenue_change_pct": -0.6557840746234883, "net_revenue_2024": 6721.04, "net_revenue_2025": 2030.1000000000001, "lost_cancelled_2024": 22710.98, "lost_cancelled_2025": 8100.87, "lost_noshow_2024": 0.0, "lost_noshow_2025": 0.0, "revenue_realization_2024": 0.2283580943475847, "revenue_realization_2025": 0.20038555044581124}, {"broker": "Stress Free Car Rental", "bookings_2024": 0, "bookings_2025": 33, "bookings_change": 33, "bookings_change_pct": 0, "confirmed_2024": 0, "confirmed_2025": 17, "cancelled_2024": 0, "cancelled_2025": 16, "noshow_2024": 0, "noshow_2025": 1, "cancellation_rate_2024": 0, "cancellation_rate_2025": 0.48484848484848486, "noshow_rate_2024": 0, "noshow_rate_2025": 0.030303030303030304, "revenue_2024": 0, "revenue_2025": 3981.33, "revenue_change": 3981.33, "revenue_change_pct": 0, "net_revenue_2024": 0, "net_revenue_2025": 1889.34, "lost_cancelled_2024": 0, "lost_cancelled_2025": 2091.99, "lost_noshow_2024": 0, "lost_noshow_2025": 160.5, "revenue_realization_2024": 0, "revenue_realization_2025": 0.4745499619473894}, {"broker": "Orbit Car Hire", "bookings_2024": 1629, "bookings_2025": 18, "bookings_change": -1611, "bookings_change_pct": -0.988950276243094, "confirmed_2024": 958, "confirmed_2025": 6, "cancelled_2024": 671, "cancelled_2025": 12, "noshow_2024": 0, "noshow_2025": 2, "cancellation_rate_2024": 0.41190914671577655, "cancellation_rate_2025": 0.6666666666666666, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.1111111111111111, "revenue_2024": 294424.84, "revenue_2025": 2442.87, "revenue_change": -291981.97000000003, "revenue_change_pct": -0.9917029079475768, "net_revenue_2024": 160827.72, "net_revenue_2025": 531.45, "lost_cancelled_2024": 133597.12, "lost_cancelled_2025": 1911.42, "lost_noshow_2024": 0.0, "lost_noshow_2025": 195.73000000000002, "revenue_realization_2024": 0.5462437204686941, "revenue_realization_2025": 0.21755148657112333}, {"broker": "Rentcars POA", "bookings_2024": 84, "bookings_2025": 17, "bookings_change": -67, "bookings_change_pct": -0.7976190476190477, "confirmed_2024": 43, "confirmed_2025": 10, "cancelled_2024": 41, "cancelled_2025": 7, "noshow_2024": 0, "noshow_2025": 2, "cancellation_rate_2024": 0.4880952380952381, "cancellation_rate_2025": 0.4117647058823529, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.11764705882352941, "revenue_2024": 3209.87, "revenue_2025": 1075.5, "revenue_change": -2134.37, "revenue_change_pct": -0.6649397016078533, "net_revenue_2024": 1129.05, "net_revenue_2025": 840.6400000000001, "lost_cancelled_2024": 2080.82, "lost_cancelled_2025": 234.85999999999999, "lost_noshow_2024": 0.0, "lost_noshow_2025": 11.91, "revenue_realization_2024": 0.3517432170150193, "revenue_realization_2025": 0.7816271501627151}, {"broker": "Tinoleggio", "bookings_2024": 3, "bookings_2025": 2, "bookings_change": -1, "bookings_change_pct": -0.33333333333333337, "confirmed_2024": 1, "confirmed_2025": 0, "cancelled_2024": 2, "cancelled_2025": 2, "noshow_2024": 0, "noshow_2025": 0, "cancellation_rate_2024": 0.6666666666666666, "cancellation_rate_2025": 1.0, "noshow_rate_2024": 0.0, "noshow_rate_2025": 0.0, "revenue_2024": 222.32, "revenue_2025": 9.56, "revenue_change": -212.76, "revenue_change_pct": -0.956998920474991, "net_revenue_2024": 123.42, "net_revenue_2025": 0.0, "lost_cancelled_2024": 98.9, "lost_cancelled_2025": 9.56, "lost_noshow_2024": 0.0, "lost_noshow_2025": 0.0, "revenue_realization_2024": 0.5551457358762145, "revenue_realization_2025": 0.0}], "totals": {"bookings_2024": 28307, "bookings_2025": 20102, "confirmed_2024": 15755, "confirmed_2025": 11480, "cancelled_2024": 12552, "cancelled_2025": 8622, "noshow_2024": 1, "noshow_2025": 1087, "revenue_2024": 4490844.74, "revenue_2025": 2738586.31, "net_revenue_2024": 2340994.98, "net_revenue_2025": 1564387.64, "lost_cancelled_2024": 2149849.7600000002, "lost_cancelled_2025": 1174198.67, "lost_noshow_2024": 212.5, "lost_noshow_2025": 131051.56999999999}};
+        
+        // TRANSLATIONS
+        const translations = {
+            it: {
+                title: "Dashboard Performance Broker",
+                subtitle: "Analisi Completa 2025 - Edizione Fiera",
+                tabs: {
+                    overview: "📈 Panoramica",
+                    cancellations: "❌ Cancellazioni",
+                    brokers: "🏢 Broker",
+                    comparison: "⚖️ Confronto"
+                },
+                overview: {
+                    totalBookings: "Prenotazioni Totali 2025",
+                    noshow: "No-Show 2025",
+                    valueConfirmed: "Valore Prenotazioni Confermate 2025",
+                    valueCancelled: "Valore Prenotazioni Cancellate 2025",
+                    valueNoshow: "Valore Prenotazioni No-Show 2025",
+                    ofTotal: "del totale",
+                    chartBookings: "Top 10 Broker: Prenotazioni 2025",
+                    chartRevenue: "Top 10 Broker: Valore Prenotazioni Confermate 2025"
+                },
+                cancellations: {
+                    alertTitle: "⚠️ ALERT: Impatto Cancellazioni e No-Show",
+                    alertText: "Nel 2025 sono state <strong>cancellate {cancelled} prenotazioni ({cancelledPct})</strong> e registrati <strong>{noshow} no-show ({noshowPct})</strong>.<br><br>Valore totale perso: <strong style='font-size:1.3em;'>{totalLost}</strong>",
+                    totalCancellations: "Cancellazioni 2025",
+                    totalNoshow: "No-Show 2025",
+                    lostCancellations: "Valore Perso (Cancellazioni)",
+                    lostNoshow: "Valore Perso (No-Show)",
+                    ofBookings: "delle prenotazioni",
+                    chartRate: "Broker con Tasso Cancellazione più Alto (2025)",
+                    chartNoshow: "Broker con più No-Show (2025)",
+                    tableHeaders: {
+                        broker: "Broker",
+                        bookings: "Prenotazioni",
+                        cancelled: "Cancellate",
+                        cancelledValue: "Valore Cancellate",
+                        cancellationPct: "% Cancellazione",
+                        noshow: "No-Show",
+                        noshowValue: "Valore No-Show",
+                        noshowPct: "% No-Show"
+                    }
+                },
+                brokers: {
+                    search: "Cerca Broker",
+                    searchPlaceholder: "Nome broker...",
+                    tableHeaders: {
+                        broker: "Broker",
+                        bookings2025: "Prenotazioni 2025",
+                        confirmed: "Confermate",
+                        confirmedValue: "Valore Confermate",
+                        cancelled: "Cancellate",
+                        cancelledValue: "Valore Cancellate",
+                        noshow: "No-Show",
+                        noshowPct: "% No-Show",
+                        noshowValue: "Valore No-Show"
+                    }
+                },
+                comparison: {
+                    select: "Seleziona Broker da Analizzare",
+                    selectPlaceholder: "Scegli un broker...",
+                    bookings2024: "Prenotazioni 2024",
+                    bookings2025: "Prenotazioni 2025",
+                    confirmed2025: "Confermate 2025",
+                    cancellationRate: "Tasso Cancellazione 2025",
+                    chartTitle: "Breakdown Performance Completo",
+                    insightsTitle: "💡 Insights Chiave",
+                    insightsDefault: "Seleziona un broker per vedere gli insights.",
+                    insightsDecline: "{broker} ha registrato un <strong style='color:#dc2626;'>calo del {pct}</strong> nelle prenotazioni.",
+                    insightsGrowth: "{broker} ha registrato una <strong style='color:#10b981;'>crescita del {pct}</strong> nelle prenotazioni.",
+                    insightsHighCanc: "<br><br>⚠️ <strong>ATTENZIONE:</strong> Il tasso di cancellazione è molto alto ({pct}). Valore perso per cancellazioni: {value}.",
+                    insightsOkCanc: "<br><br>✅ Il tasso di cancellazione è accettabile ({pct}).",
+                    insightsNoshow: "<br><br>⚠️ Registrati {count} no-show. Valore perso: {value}."
+                }
+            },
+            en: {
+                title: "Broker Performance Dashboard",
+                subtitle: "Complete Analysis 2025 - Trade Show Edition",
+                tabs: {
+                    overview: "📈 Overview",
+                    cancellations: "❌ Cancellations",
+                    brokers: "🏢 Brokers",
+                    comparison: "⚖️ Comparison"
+                },
+                overview: {
+                    totalBookings: "Total Bookings 2025",
+                    noshow: "No-Show 2025",
+                    valueConfirmed: "Confirmed Bookings Value 2025",
+                    valueCancelled: "Cancelled Bookings Value 2025",
+                    valueNoshow: "No-Show Bookings Value 2025",
+                    ofTotal: "of total",
+                    chartBookings: "Top 10 Brokers: Bookings 2025",
+                    chartRevenue: "Top 10 Brokers: Confirmed Bookings Value 2025"
+                },
+                cancellations: {
+                    alertTitle: "⚠️ ALERT: Cancellations & No-Show Impact",
+                    alertText: "In 2025 there were <strong>{cancelled} cancelled bookings ({cancelledPct})</strong> and <strong>{noshow} no-shows ({noshowPct})</strong>.<br><br>Total value lost: <strong style='font-size:1.3em;'>{totalLost}</strong>",
+                    totalCancellations: "Cancellations 2025",
+                    totalNoshow: "No-Show 2025",
+                    lostCancellations: "Value Lost (Cancellations)",
+                    lostNoshow: "Value Lost (No-Show)",
+                    ofBookings: "of bookings",
+                    chartRate: "Brokers with Highest Cancellation Rate (2025)",
+                    chartNoshow: "Brokers with Most No-Shows (2025)",
+                    tableHeaders: {
+                        broker: "Broker",
+                        bookings: "Bookings",
+                        cancelled: "Cancelled",
+                        cancelledValue: "Cancelled Value",
+                        cancellationPct: "% Cancellation",
+                        noshow: "No-Show",
+                        noshowValue: "No-Show Value",
+                        noshowPct: "% No-Show"
+                    }
+                },
+                brokers: {
+                    search: "Search Broker",
+                    searchPlaceholder: "Broker name...",
+                    tableHeaders: {
+                        broker: "Broker",
+                        bookings2025: "Bookings 2025",
+                        confirmed: "Confirmed",
+                        confirmedValue: "Confirmed Value",
+                        cancelled: "Cancelled",
+                        cancelledValue: "Cancelled Value",
+                        noshow: "No-Show",
+                        noshowPct: "% No-Show",
+                        noshowValue: "No-Show Value"
+                    }
+                },
+                comparison: {
+                    select: "Select Broker to Analyze",
+                    selectPlaceholder: "Choose a broker...",
+                    bookings2024: "Bookings 2024",
+                    bookings2025: "Bookings 2025",
+                    confirmed2025: "Confirmed 2025",
+                    cancellationRate: "Cancellation Rate 2025",
+                    chartTitle: "Complete Performance Breakdown",
+                    insightsTitle: "💡 Key Insights",
+                    insightsDefault: "Select a broker to see insights.",
+                    insightsDecline: "{broker} registered a <strong style='color:#dc2626;'>decline of {pct}</strong> in bookings.",
+                    insightsGrowth: "{broker} registered a <strong style='color:#10b981;'>growth of {pct}</strong> in bookings.",
+                    insightsHighCanc: "<br><br>⚠️ <strong>WARNING:</strong> Cancellation rate is very high ({pct}). Value lost to cancellations: {value}.",
+                    insightsOkCanc: "<br><br>✅ Cancellation rate is acceptable ({pct}).",
+                    insightsNoshow: "<br><br>⚠️ Registered {count} no-shows. Value lost: {value}."
+                }
+            }
+        };
+        
+        let currentLang = 'it';
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 15px;
+            touch-action: manipulation;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        .lang-selector {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 12px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+        .lang-btn {
+            padding: 8px 18px;
+            border: none;
+            background: rgba(255,255,255,0.3);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.4);
+        }
+        .lang-btn.active {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .header p { font-size: 1.2em; opacity: 0.95; }
+        .nav-tabs {
+            display: flex;
+            background: #f1f3f5;
+            padding: 0 15px;
+            overflow-x: auto;
+            border-bottom: 3px solid #dee2e6;
+        }
+        .nav-tab {
+            padding: 22px 28px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #495057;
+            background: transparent;
+            border: none;
+            border-bottom: 4px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            min-width: 150px;
+            text-align: center;
+        }
+        .nav-tab:active { transform: scale(0.97); }
+        .nav-tab.active { color: #667eea; border-bottom-color: #667eea; background: white; }
+        .content { padding: 30px; min-height: 60vh; }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 28px;
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.35);
+            transition: transform 0.2s;
+        }
+        .metric-card:active { transform: scale(0.98); }
+        .metric-card.warning { background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%); }
+        .metric-card.danger { background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); }
+        .metric-card.success { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .metric-card h3 {
+            font-size: 1em;
+            opacity: 0.92;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .metric-value {
+            font-size: 2.6em;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+        .metric-change { font-size: 1.05em; opacity: 0.95; font-weight: 600; }
+        .chart-container {
+            background: #f8f9fa;
+            padding: 28px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .chart-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #dee2e6;
+        }
+        .table-container {
+            overflow-x: auto;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        table { width: 100%; border-collapse: collapse; background: white; font-size: 16px; }
+        thead {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        th {
+            padding: 18px 14px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+        th:hover { background: rgba(255,255,255,0.1); }
+        th.sortable::after {
+            content: ' ⇅';
+            opacity: 0.5;
+            font-size: 0.8em;
+        }
+        th.sorted-asc::after {
+            content: ' ▲';
+            opacity: 1;
+        }
+        th.sorted-desc::after {
+            content: ' ▼';
+            opacity: 1;
+        }
+        td { padding: 16px 14px; border-bottom: 1px solid #e9ecef; }
+        tbody tr:active { background: #e9ecef; }
+        tbody tr:hover { background: #f8f9fa; }
+        .badge {
+            display: inline-block;
+            padding: 7px 16px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 700;
+        }
+        .badge-success { background: #d1fae5; color: #065f46; }
+        .badge-danger { background: #fee2e2; color: #991b1b; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%);
+            border-left: 6px solid #f59e0b;
+            padding: 25px;
+            border-radius: 18px;
+            margin: 25px 0;
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25);
+        }
+        .highlight-box h3 { color: #92400e; font-size: 1.4em; margin-bottom: 12px; font-weight: 800; }
+        .highlight-box p { color: #78350f; font-size: 1.15em; line-height: 1.6; font-weight: 600; }
+        .critical-alert {
+            background: linear-gradient(135deg, #fee2e2 0%, #fca5a5 100%);
+            border-left: 6px solid #dc2626;
+        }
+        .critical-alert h3 { color: #991b1b; }
+        .critical-alert p { color: #7f1d1d; }
+        .filters {
+            background: #f8f9fa;
+            padding: 22px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .filter-group { flex: 1; min-width: 220px; }
+        .filter-group label {
+            display: block;
+            font-size: 0.9em;
+            font-weight: 700;
+            color: #495057;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        select, input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 2px solid #dee2e6;
+            border-radius: 12px;
+            font-size: 17px;
+            transition: all 0.3s;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .nav-tab { padding: 18px 22px; font-size: 16px; }
+            .metric-value { font-size: 2.2em; }
+            .lang-selector {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="lang-selector">
+                <button class="lang-btn active" onclick="switchLanguage('it')">🇮🇹 IT</button>
+                <button class="lang-btn" onclick="switchLanguage('en')">🇬🇧 EN</button>
+            </div>
+            <h1 id="header-title">Dashboard Performance Broker</h1>
+            <p id="header-subtitle">Analisi Completa 2025 - Edizione Fiera</p>
+        </div>
+        
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('overview')" id="tab-overview">📈 Panoramica</button>
+            <button class="nav-tab" onclick="showTab('cancellations')" id="tab-cancellations">❌ Cancellazioni</button>
+            <button class="nav-tab" onclick="showTab('brokers')" id="tab-brokers">🏢 Broker</button>
+            <button class="nav-tab" onclick="showTab('comparison')" id="tab-comparison">⚖️ Confronto</button>
+        </div>
+        
+        <div class="content">
+            <div id="overview" class="tab-pane active">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3 id="ov-total-bookings">Prenotazioni Totali 2025</h3>
+                        <div class="metric-value" id="total_bookings_2025">-</div>
+                    </div>
+                    <div class="metric-card warning">
+                        <h3 id="ov-noshow">No-Show 2025</h3>
+                        <div class="metric-value" id="noshow_2025">-</div>
+                        <div class="metric-change" id="noshow_rate">-</div>
+                    </div>
+                    <div class="metric-card success">
+                        <h3 id="ov-value-confirmed">Valore Prenotazioni Confermate 2025</h3>
+                        <div class="metric-value" id="value_confirmed_2025">-</div>
+                    </div>
+                    <div class="metric-card danger">
+                        <h3 id="ov-value-cancelled">Valore Prenotazioni Cancellate 2025</h3>
+                        <div class="metric-value" id="value_cancelled_2025">-</div>
+                    </div>
+                    <div class="metric-card warning">
+                        <h3 id="ov-value-noshow">Valore Prenotazioni No-Show 2025</h3>
+                        <div class="metric-value" id="value_noshow_2025">-</div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title" id="ov-chart-bookings">Top 10 Broker: Prenotazioni 2025</div>
+                    <canvas id="overviewChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title" id="ov-chart-revenue">Top 10 Broker: Valore Prenotazioni Confermate 2025</div>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+            
+            <div id="cancellations" class="tab-pane">
+                <div class="critical-alert">
+                    <h3 id="canc-alert-title">⚠️ ALERT: Impatto Cancellazioni e No-Show</h3>
+                    <p id="cancellation_alert">Analisi in corso...</p>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card danger">
+                        <h3 id="canc-total">Cancellazioni 2025</h3>
+                        <div class="metric-value" id="canc_total_value">-</div>
+                        <div class="metric-change" id="canc_rate_display">-</div>
+                    </div>
+                    <div class="metric-card warning">
+                        <h3 id="canc-noshow">No-Show 2025</h3>
+                        <div class="metric-value" id="noshow_total">-</div>
+                        <div class="metric-change" id="noshow_rate_display">-</div>
+                    </div>
+                    <div class="metric-card danger">
+                        <h3 id="canc-lost-canc">Valore Perso (Cancellazioni)</h3>
+                        <div class="metric-value" id="lost_canc">-</div>
+                    </div>
+                    <div class="metric-card warning">
+                        <h3 id="canc-lost-noshow">Valore Perso (No-Show)</h3>
+                        <div class="metric-value" id="lost_noshow">-</div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title" id="canc-chart-rate">Broker con Tasso Cancellazione più Alto (2025)</div>
+                    <canvas id="cancellationRateChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title" id="canc-chart-noshow">Broker con più No-Show (2025)</div>
+                    <canvas id="noshowChart"></canvas>
+                </div>
+                
+                <div class="table-container">
+                    <table id="cancellationTableElem">
+                        <thead>
+                            <tr>
+                                <th class="sortable" onclick="sortCancellationTable('broker')" id="canc-th-broker">Broker</th>
+                                <th class="sortable" onclick="sortCancellationTable('bookings')" id="canc-th-bookings">Prenotazioni</th>
+                                <th class="sortable" onclick="sortCancellationTable('cancelled')" id="canc-th-cancelled">Cancellate</th>
+                                <th class="sortable" onclick="sortCancellationTable('cancelled_value')" id="canc-th-cancelled-value">Valore Cancellate</th>
+                                <th class="sortable" onclick="sortCancellationTable('cancellation_pct')" id="canc-th-cancellation-pct">% Cancellazione</th>
+                                <th class="sortable" onclick="sortCancellationTable('noshow')" id="canc-th-noshow">No-Show</th>
+                                <th class="sortable" onclick="sortCancellationTable('noshow_value')" id="canc-th-noshow-value">Valore No-Show</th>
+                                <th class="sortable" onclick="sortCancellationTable('noshow_pct')" id="canc-th-noshow-pct">% No-Show</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cancellationTable"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="brokers" class="tab-pane">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label id="broker-search-label">Cerca Broker</label>
+                        <input type="text" id="brokerSearch" placeholder="Nome broker..." onkeyup="updateBrokerTable()">
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table id="brokerTableElem">
+                        <thead>
+                            <tr>
+                                <th class="sortable" onclick="sortBrokerTable('broker')" id="broker-th-broker">Broker</th>
+                                <th class="sortable" onclick="sortBrokerTable('bookings2025')" id="broker-th-bookings2025">Prenotazioni 2025</th>
+                                <th class="sortable" onclick="sortBrokerTable('confirmed')" id="broker-th-confirmed">Confermate</th>
+                                <th class="sortable" onclick="sortBrokerTable('confirmed_value')" id="broker-th-confirmed-value">Valore Confermate</th>
+                                <th class="sortable" onclick="sortBrokerTable('cancelled')" id="broker-th-cancelled">Cancellate</th>
+                                <th class="sortable" onclick="sortBrokerTable('cancelled_value')" id="broker-th-cancelled-value">Valore Cancellate</th>
+                                <th class="sortable" onclick="sortBrokerTable('noshow')" id="broker-th-noshow">No-Show</th>
+                                <th class="sortable" onclick="sortBrokerTable('noshow_pct')" id="broker-th-noshow-pct">% No-Show</th>
+                                <th class="sortable" onclick="sortBrokerTable('noshow_value')" id="broker-th-noshow-value">Valore No-Show</th>
+                            </tr>
+                        </thead>
+                        <tbody id="brokerTable"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="comparison" class="tab-pane">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label id="comp-select-label">Seleziona Broker da Analizzare</label>
+                        <select id="compareSelect" onchange="updateComparison()">
+                            <option value="" id="comp-select-placeholder">Scegli un broker...</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="comparisonContent" style="display:none;">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h3 id="comp-bookings2024">Prenotazioni 2024</h3>
+                            <div class="metric-value" id="comp_bookings2024">-</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3 id="comp-bookings2025">Prenotazioni 2025</h3>
+                            <div class="metric-value" id="comp_bookings2025">-</div>
+                            <div class="metric-change" id="comp_bookings_change">-</div>
+                        </div>
+                        <div class="metric-card success">
+                            <h3 id="comp-confirmed2025">Confermate 2025</h3>
+                            <div class="metric-value" id="comp_confirmed">-</div>
+                        </div>
+                        <div class="metric-card warning">
+                            <h3 id="comp-canc-rate">Tasso Cancellazione 2025</h3>
+                            <div class="metric-value" id="comp_canc_rate_value">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-title" id="comp-chart-title">Breakdown Performance Completo</div>
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3 id="comp-insights-title">💡 Insights Chiave</h3>
+                        <p id="comparisonInsights">Seleziona un broker per vedere gli insights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let appData = null;
+        let charts = {};
+        let cancellationSortState = { column: 'cancellation_pct', direction: 'desc' };
+        let brokerSortState = { column: 'bookings2025', direction: 'desc' };
+        
+        appData = EMBEDDED_DATA;
+        initializeApp();
+        
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update all text
+            updateLanguage();
+            
+            // Refresh data displays
+            updateOverview();
+            updateCancellations();
+            updateBrokerTable();
+            
+            // Update comparison if broker is selected
+            const selectedBroker = document.getElementById('compareSelect').value;
+            if (selectedBroker) {
+                updateComparison();
+            }
+        }
+        
+        function t(key) {
+            const keys = key.split('.');
+            let value = translations[currentLang];
+            for (let k of keys) {
+                value = value[k];
+                if (!value) return key;
+            }
+            return value;
+        }
+        
+        function updateLanguage() {
+            // Header
+            document.getElementById('header-title').textContent = t('title');
+            document.getElementById('header-subtitle').textContent = t('subtitle');
+            
+            // Tabs
+            document.getElementById('tab-overview').textContent = t('tabs.overview');
+            document.getElementById('tab-cancellations').textContent = t('tabs.cancellations');
+            document.getElementById('tab-brokers').textContent = t('tabs.brokers');
+            document.getElementById('tab-comparison').textContent = t('tabs.comparison');
+            
+            // Overview
+            document.getElementById('ov-total-bookings').textContent = t('overview.totalBookings');
+            document.getElementById('ov-noshow').textContent = t('overview.noshow');
+            document.getElementById('ov-value-confirmed').textContent = t('overview.valueConfirmed');
+            document.getElementById('ov-value-cancelled').textContent = t('overview.valueCancelled');
+            document.getElementById('ov-value-noshow').textContent = t('overview.valueNoshow');
+            document.getElementById('ov-chart-bookings').textContent = t('overview.chartBookings');
+            document.getElementById('ov-chart-revenue').textContent = t('overview.chartRevenue');
+            
+            // Cancellations
+            document.getElementById('canc-alert-title').textContent = t('cancellations.alertTitle');
+            document.getElementById('canc-total').textContent = t('cancellations.totalCancellations');
+            document.getElementById('canc-noshow').textContent = t('cancellations.totalNoshow');
+            document.getElementById('canc-lost-canc').textContent = t('cancellations.lostCancellations');
+            document.getElementById('canc-lost-noshow').textContent = t('cancellations.lostNoshow');
+            document.getElementById('canc-chart-rate').textContent = t('cancellations.chartRate');
+            document.getElementById('canc-chart-noshow').textContent = t('cancellations.chartNoshow');
+            
+            document.getElementById('canc-th-broker').textContent = t('cancellations.tableHeaders.broker');
+            document.getElementById('canc-th-bookings').textContent = t('cancellations.tableHeaders.bookings');
+            document.getElementById('canc-th-cancelled').textContent = t('cancellations.tableHeaders.cancelled');
+            document.getElementById('canc-th-cancelled-value').textContent = t('cancellations.tableHeaders.cancelledValue');
+            document.getElementById('canc-th-cancellation-pct').textContent = t('cancellations.tableHeaders.cancellationPct');
+            document.getElementById('canc-th-noshow').textContent = t('cancellations.tableHeaders.noshow');
+            document.getElementById('canc-th-noshow-value').textContent = t('cancellations.tableHeaders.noshowValue');
+            document.getElementById('canc-th-noshow-pct').textContent = t('cancellations.tableHeaders.noshowPct');
+            
+            // Brokers
+            document.getElementById('broker-search-label').textContent = t('brokers.search');
+            document.getElementById('brokerSearch').placeholder = t('brokers.searchPlaceholder');
+            
+            document.getElementById('broker-th-broker').textContent = t('brokers.tableHeaders.broker');
+            document.getElementById('broker-th-bookings2025').textContent = t('brokers.tableHeaders.bookings2025');
+            document.getElementById('broker-th-confirmed').textContent = t('brokers.tableHeaders.confirmed');
+            document.getElementById('broker-th-confirmed-value').textContent = t('brokers.tableHeaders.confirmedValue');
+            document.getElementById('broker-th-cancelled').textContent = t('brokers.tableHeaders.cancelled');
+            document.getElementById('broker-th-cancelled-value').textContent = t('brokers.tableHeaders.cancelledValue');
+            document.getElementById('broker-th-noshow').textContent = t('brokers.tableHeaders.noshow');
+            document.getElementById('broker-th-noshow-pct').textContent = t('brokers.tableHeaders.noshowPct');
+            document.getElementById('broker-th-noshow-value').textContent = t('brokers.tableHeaders.noshowValue');
+            
+            // Comparison
+            document.getElementById('comp-select-label').textContent = t('comparison.select');
+            document.getElementById('comp-select-placeholder').textContent = t('comparison.selectPlaceholder');
+            document.getElementById('comp-bookings2024').textContent = t('comparison.bookings2024');
+            document.getElementById('comp-bookings2025').textContent = t('comparison.bookings2025');
+            document.getElementById('comp-confirmed2025').textContent = t('comparison.confirmed2025');
+            document.getElementById('comp-canc-rate').textContent = t('comparison.cancellationRate');
+            document.getElementById('comp-chart-title').textContent = t('comparison.chartTitle');
+            document.getElementById('comp-insights-title').textContent = t('comparison.insightsTitle');
+        }
+        
+        function initializeApp() {
+            updateLanguage();
+            updateOverview();
+            updateCancellations();
+            updateBrokerTable();
+            populateCompareSelect();
+        }
+        
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function fmt(num) { return new Intl.NumberFormat(currentLang === 'it' ? 'it-IT' : 'en-US').format(Math.round(num)); }
+        function fmtCur(num) { return '€' + new Intl.NumberFormat(currentLang === 'it' ? 'it-IT' : 'en-US').format(Math.round(num)); }
+        function fmtPct(num) { return (num * 100).toFixed(1) + '%'; }
+        
+        function updateOverview() {
+            const tt = appData.totals;
+            
+            document.getElementById('total_bookings_2025').textContent = fmt(tt.bookings_2025);
+            document.getElementById('noshow_2025').textContent = fmt(tt.noshow_2025);
+            document.getElementById('noshow_rate').textContent = fmtPct(tt.noshow_2025 / tt.bookings_2025) + ' ' + t('overview.ofTotal');
+            
+            document.getElementById('value_confirmed_2025').textContent = fmtCur(tt.net_revenue_2025);
+            document.getElementById('value_cancelled_2025').textContent = fmtCur(tt.lost_cancelled_2025);
+            document.getElementById('value_noshow_2025').textContent = fmtCur(tt.lost_noshow_2025);
+            
+            createOverviewChart();
+            createRevenueChart();
+        }
+        
+        function createOverviewChart() {
+            const top10 = appData.brokers.slice(0, 10);
+            const ctx = document.getElementById('overviewChart');
+            if (charts.overview) charts.overview.destroy();
+            charts.overview = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: top10.map(b => b.broker),
+                    datasets: [{
+                        label: currentLang === 'it' ? 'Prenotazioni 2025' : 'Bookings 2025',
+                        data: top10.map(b => b.bookings_2025),
+                        backgroundColor: 'rgba(102, 126, 234, 0.7)',
+                        borderColor: 'rgba(102, 126, 234, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: true, position: 'top', labels: { font: { size: 14 } } } }, scales: { y: { beginAtZero: true } } }
+            });
+        }
+        
+        function createRevenueChart() {
+            const top10 = appData.brokers.slice(0, 10);
+            const ctx = document.getElementById('revenueChart');
+            if (charts.revenue) charts.revenue.destroy();
+            charts.revenue = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: top10.map(b => b.broker),
+                    datasets: [{
+                        label: currentLang === 'it' ? 'Valore Confermate 2025' : 'Confirmed Value 2025',
+                        data: top10.map(b => b.net_revenue_2025),
+                        backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: true, position: 'top', labels: { font: { size: 14 } } } }, scales: { y: { beginAtZero: true, ticks: { callback: function(value) { return '€' + (value/1000).toFixed(0) + 'K'; } } } } }
+            });
+        }
+        
+        function updateCancellations() {
+            const tt = appData.totals;
+            const cancRate = tt.cancelled_2025 / tt.bookings_2025;
+            const noshowRate = tt.noshow_2025 / tt.bookings_2025;
+            
+            document.getElementById('canc_total_value').textContent = fmt(tt.cancelled_2025);
+            document.getElementById('canc_rate_display').textContent = fmtPct(cancRate) + ' ' + t('cancellations.ofBookings');
+            document.getElementById('noshow_total').textContent = fmt(tt.noshow_2025);
+            document.getElementById('noshow_rate_display').textContent = fmtPct(noshowRate) + ' ' + t('cancellations.ofBookings');
+            document.getElementById('lost_canc').textContent = fmtCur(tt.lost_cancelled_2025);
+            document.getElementById('lost_noshow').textContent = fmtCur(tt.lost_noshow_2025);
+            
+            const totalLost = tt.lost_cancelled_2025 + tt.lost_noshow_2025;
+            const alertTemplate = t('cancellations.alertText');
+            document.getElementById('cancellation_alert').innerHTML = alertTemplate
+                .replace('{cancelled}', fmt(tt.cancelled_2025))
+                .replace('{cancelledPct}', fmtPct(cancRate))
+                .replace('{noshow}', fmt(tt.noshow_2025))
+                .replace('{noshowPct}', fmtPct(noshowRate))
+                .replace('{totalLost}', fmtCur(totalLost));
+            
+            createCancellationCharts();
+            renderCancellationTable();
+        }
+        
+        function createCancellationCharts() {
+            const sorted = [...appData.brokers].sort((a, b) => b.cancellation_rate_2025 - a.cancellation_rate_2025).slice(0, 10);
+            const ctx1 = document.getElementById('cancellationRateChart');
+            if (charts.cancRate) charts.cancRate.destroy();
+            charts.cancRate = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: sorted.map(b => b.broker),
+                    datasets: [{
+                        label: currentLang === 'it' ? 'Tasso Cancellazione %' : 'Cancellation Rate %',
+                        data: sorted.map(b => b.cancellation_rate_2025 * 100),
+                        backgroundColor: 'rgba(220, 38, 38, 0.7)',
+                        borderColor: 'rgba(220, 38, 38, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: true, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { callback: function(value) { return value + '%'; } } } } }
+            });
+            
+            const sortedNS = [...appData.brokers].sort((a, b) => b.noshow_2025 - a.noshow_2025).slice(0, 10);
+            const ctx2 = document.getElementById('noshowChart');
+            if (charts.noshow) charts.noshow.destroy();
+            charts.noshow = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: sortedNS.map(b => b.broker),
+                    datasets: [{
+                        label: 'No-Show',
+                        data: sortedNS.map(b => b.noshow_2025),
+                        backgroundColor: 'rgba(245, 158, 11, 0.7)',
+                        borderColor: 'rgba(245, 158, 11, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: true, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true } } }
+            });
+        }
+        
+        function sortCancellationTable(column) {
+            if (cancellationSortState.column === column) {
+                cancellationSortState.direction = cancellationSortState.direction === 'asc' ? 'desc' : 'asc';
+            } else {
+                cancellationSortState.column = column;
+                cancellationSortState.direction = 'desc';
+            }
+            renderCancellationTable();
+            updateSortHeaders('cancellationTableElem', column, cancellationSortState.direction);
+        }
+        
+        function renderCancellationTable() {
+            let brokers = [...appData.brokers];
+            
+            brokers.sort((a, b) => {
+                let valA, valB;
+                switch(cancellationSortState.column) {
+                    case 'broker': 
+                        return cancellationSortState.direction === 'asc' ? a.broker.localeCompare(b.broker) : b.broker.localeCompare(a.broker);
+                    case 'bookings': valA = a.bookings_2025; valB = b.bookings_2025; break;
+                    case 'cancelled': valA = a.cancelled_2025; valB = b.cancelled_2025; break;
+                    case 'cancelled_value': valA = a.lost_cancelled_2025; valB = b.lost_cancelled_2025; break;
+                    case 'cancellation_pct': valA = a.cancellation_rate_2025; valB = b.cancellation_rate_2025; break;
+                    case 'noshow': valA = a.noshow_2025; valB = b.noshow_2025; break;
+                    case 'noshow_pct': valA = a.noshow_rate_2025; valB = b.noshow_rate_2025; break;
+                    case 'noshow_value': valA = a.lost_noshow_2025; valB = b.lost_noshow_2025; break;
+                    case 'noshow_pct': valA = a.noshow_rate_2025; valB = b.noshow_rate_2025; break;
+                    default: valA = a.cancellation_rate_2025; valB = b.cancellation_rate_2025;
+                }
+                return cancellationSortState.direction === 'asc' ? valA - valB : valB - valA;
+            });
+            
+            const tbody = document.getElementById('cancellationTable');
+            tbody.innerHTML = '';
+            
+            brokers.forEach(broker => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td><strong>${broker.broker}</strong></td>
+                    <td>${fmt(broker.bookings_2025)}</td>
+                    <td style="color: #dc2626; font-weight: 700;">${fmt(broker.cancelled_2025)}</td>
+                    <td style="color: #dc2626; font-weight: 700;">${fmtCur(broker.lost_cancelled_2025)}</td>
+                    <td><span class="badge ${broker.cancellation_rate_2025 > 0.4 ? 'badge-danger' : 'badge-warning'}">${fmtPct(broker.cancellation_rate_2025)}</span></td>
+                    <td style="color: #f59e0b; font-weight: 700;">${fmt(broker.noshow_2025)}</td>
+                    <td><span class="badge ${broker.noshow_rate_2025 > 0.05 ? 'badge-warning' : 'badge-success'}">${fmtPct(broker.noshow_rate_2025)}</span></td>
+                    <td style="color: #f59e0b; font-weight: 700;">${fmtCur(broker.lost_noshow_2025)}</td>
+                    <td><span class="badge ${broker.noshow_rate_2025 > 0.05 ? 'badge-warning' : 'badge-success'}">${fmtPct(broker.noshow_rate_2025)}</span></td>
+                `;
+            });
+        }
+        
+        function sortBrokerTable(column) {
+            if (brokerSortState.column === column) {
+                brokerSortState.direction = brokerSortState.direction === 'asc' ? 'desc' : 'asc';
+            } else {
+                brokerSortState.column = column;
+                brokerSortState.direction = 'desc';
+            }
+            updateBrokerTable();
+            updateSortHeaders('brokerTableElem', column, brokerSortState.direction);
+        }
+        
+        function updateBrokerTable() {
+            const search = document.getElementById('brokerSearch').value.toLowerCase();
+            let brokers = [...appData.brokers];
+            
+            if (search) {
+                brokers = brokers.filter(b => b.broker.toLowerCase().includes(search));
+            }
+            
+            brokers.sort((a, b) => {
+                let valA, valB;
+                switch(brokerSortState.column) {
+                    case 'broker': 
+                        return brokerSortState.direction === 'asc' ? a.broker.localeCompare(b.broker) : b.broker.localeCompare(a.broker);
+                    case 'bookings2025': valA = a.bookings_2025; valB = b.bookings_2025; break;
+                    case 'confirmed': valA = a.confirmed_2025; valB = b.confirmed_2025; break;
+                    case 'confirmed_value': valA = a.net_revenue_2025; valB = b.net_revenue_2025; break;
+                    case 'cancelled': valA = a.cancelled_2025; valB = b.cancelled_2025; break;
+                    case 'cancelled_value': valA = a.lost_cancelled_2025; valB = b.lost_cancelled_2025; break;
+                    case 'noshow': valA = a.noshow_2025; valB = b.noshow_2025; break;
+                    case 'noshow_pct': valA = a.noshow_rate_2025; valB = b.noshow_rate_2025; break;
+                    case 'noshow_value': valA = a.lost_noshow_2025; valB = b.lost_noshow_2025; break;
+                    default: valA = a.bookings_2025; valB = b.bookings_2025;
+                }
+                return brokerSortState.direction === 'asc' ? valA - valB : valB - valA;
+            });
+            
+            const tbody = document.getElementById('brokerTable');
+            tbody.innerHTML = '';
+            
+            brokers.forEach(broker => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td><strong>${broker.broker}</strong></td>
+                    <td>${fmt(broker.bookings_2025)}</td>
+                    <td style="color: #10b981; font-weight: 700;">${fmt(broker.confirmed_2025)}</td>
+                    <td style="color: #10b981; font-weight: 700;">${fmtCur(broker.net_revenue_2025)}</td>
+                    <td style="color: #dc2626; font-weight: 700;">${fmt(broker.cancelled_2025)}</td>
+                    <td style="color: #dc2626; font-weight: 700;">${fmtCur(broker.lost_cancelled_2025)}</td>
+                    <td style="color: #f59e0b; font-weight: 700;">${fmt(broker.noshow_2025)}</td>
+                    <td><span class="badge ${broker.noshow_rate_2025 > 0.05 ? 'badge-warning' : 'badge-success'}">${fmtPct(broker.noshow_rate_2025)}</span></td>
+                    <td style="color: #f59e0b; font-weight: 700;">${fmtCur(broker.lost_noshow_2025)}</td>
+                `;
+            });
+        }
+        
+        function updateSortHeaders(tableId, column, direction) {
+            const table = document.getElementById(tableId);
+            const headers = table.querySelectorAll('th.sortable');
+            headers.forEach(th => {
+                th.classList.remove('sorted-asc', 'sorted-desc');
+            });
+            const index = Array.from(headers).findIndex(th => th.onclick.toString().includes(`'${column}'`));
+            if (index >= 0) {
+                headers[index].classList.add(direction === 'asc' ? 'sorted-asc' : 'sorted-desc');
+            }
+        }
+        
+        function populateCompareSelect() {
+            const select = document.getElementById('compareSelect');
+            appData.brokers.forEach(broker => {
+                const option = document.createElement('option');
+                option.value = broker.broker;
+                option.textContent = broker.broker;
+                select.appendChild(option);
+            });
+        }
+        
+        function updateComparison() {
+            const brokerName = document.getElementById('compareSelect').value;
+            if (!brokerName) {
+                document.getElementById('comparisonContent').style.display = 'none';
+                document.getElementById('comparisonInsights').innerHTML = t('comparison.insightsDefault');
+                return;
+            }
+            
+            const broker = appData.brokers.find(b => b.broker === brokerName);
+            document.getElementById('comparisonContent').style.display = 'block';
+            
+            document.getElementById('comp_bookings2024').textContent = fmt(broker.bookings_2024);
+            document.getElementById('comp_bookings2025').textContent = fmt(broker.bookings_2025);
+            const bChange = broker.bookings_change_pct;
+            document.getElementById('comp_bookings_change').textContent = (bChange >= 0 ? '+' : '') + fmtPct(bChange);
+            document.getElementById('comp_confirmed').textContent = fmt(broker.confirmed_2025);
+            document.getElementById('comp_canc_rate_value').textContent = fmtPct(broker.cancellation_rate_2025);
+            
+            let insights = '';
+            if (bChange < 0) {
+                insights = t('comparison.insightsDecline')
+                    .replace('{broker}', '<strong>' + broker.broker + '</strong>')
+                    .replace('{pct}', fmtPct(Math.abs(bChange)));
+            } else {
+                insights = t('comparison.insightsGrowth')
+                    .replace('{broker}', '<strong>' + broker.broker + '</strong>')
+                    .replace('{pct}', fmtPct(bChange));
+            }
+            
+            if (broker.cancellation_rate_2025 > 0.4) {
+                insights += t('comparison.insightsHighCanc')
+                    .replace('{pct}', fmtPct(broker.cancellation_rate_2025))
+                    .replace('{value}', fmtCur(broker.lost_cancelled_2025));
+            } else {
+                insights += t('comparison.insightsOkCanc')
+                    .replace('{pct}', fmtPct(broker.cancellation_rate_2025));
+            }
+            
+            if (broker.noshow_2025 > 100) {
+                insights += t('comparison.insightsNoshow')
+                    .replace('{count}', fmt(broker.noshow_2025))
+                    .replace('{value}', fmtCur(broker.lost_noshow_2025));
+            }
+            
+            document.getElementById('comparisonInsights').innerHTML = insights;
+            
+            const ctx = document.getElementById('comparisonChart');
+            if (charts.comparison) charts.comparison.destroy();
+            
+            const labels = currentLang === 'it' ? 
+                ['Prenotazioni', 'Confermate', 'Cancellate', 'No-Show'] :
+                ['Bookings', 'Confirmed', 'Cancelled', 'No-Show'];
+            
+            charts.comparison = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { 
+                            label: '2024', 
+                            data: [broker.bookings_2024, broker.confirmed_2024, broker.cancelled_2024, broker.noshow_2024], 
+                            backgroundColor: 'rgba(102, 126, 234, 0.7)', 
+                            borderColor: 'rgba(102, 126, 234, 1)', 
+                            borderWidth: 2 
+                        },
+                        { 
+                            label: '2025', 
+                            data: [broker.bookings_2025, broker.confirmed_2025, broker.cancelled_2025, broker.noshow_2025], 
+                            backgroundColor: 'rgba(118, 75, 162, 0.7)', 
+                            borderColor: 'rgba(118, 75, 162, 1)', 
+                            borderWidth: 2 
+                        }
+                    ]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: true, 
+                    plugins: { 
+                        legend: { display: true, position: 'top', labels: { font: { size: 14 } } } 
+                    }, 
+                    scales: { y: { beginAtZero: true } } 
+                }
+            });
+        }
+    </script>
+</body>
+</html>
